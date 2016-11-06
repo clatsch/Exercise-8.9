@@ -1,44 +1,52 @@
-public class Mensch {
-    private static int gesamtZahl = 0;          //Zähler auf 0 setzen
-    private int nummer;
+import Prog1Tools.IOTools;
+
+class Mensch {
+
+    private static int gesamtZahl = 0;
+    private int lfdnr;
     private int alter;
+    private boolean istMaennlich;
     private String vorname;
     private String nachname;
-    private boolean istMaennlich;
 
-
-    // Konstruktor
-    public Mensch(int alter, String vorname, String nachname, boolean istMaennlich) {
-        nummer = ++gesamtZahl;
+    public Mensch (int alter, boolean istMaennlich,
+                   String vorname, String nachname) {
+        lfdnr = ++gesamtZahl;
         this.alter = alter;
+        this.istMaennlich = istMaennlich;
         this.vorname = vorname;
         this.nachname = nachname;
-        this.istMaennlich = istMaennlich;
     }
 
-    // Getter
+    // a)
     public int getAlter() {
         return alter;
     }
 
-    public boolean getIstMaennlich() {
-       return true;
-    }
-
-
-    // Setter
+    // b)
     public void setAlter(int neuesAlter) {
-        this.alter = neuesAlter;
+        alter = neuesAlter;
     }
 
+    // c)
+    public boolean getIstMaennlich() {
+        return istMaennlich;
+    }
+
+    // d)
     public boolean aelterAls(Mensch m) {
         return (alter > m.alter);
     }
 
-    @Override
+    // e)
     public String toString() {
-
-        String gesch = "Männlich";
-        return vorname + " " + nachname + " " + alter + " " + istMaennlich;
+        String s = vorname + " " + nachname + ", " + alter + " Jahre, ";
+        if (istMaennlich)
+            s = s + "maennlich, ";
+        else
+            s = s + "weiblich, ";
+        s = s + "lfd. Nr. " + lfdnr;
+        return s;
     }
+
 }
